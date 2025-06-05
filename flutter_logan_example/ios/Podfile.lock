@@ -1,0 +1,31 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_logan (0.0.1):
+    - Flutter
+    - Logan (= 1.2.6)
+  - Logan (1.2.6):
+    - Logan/mbedtls (= 1.2.6)
+  - Logan/mbedtls (1.2.6)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_logan (from `.symlinks/plugins/flutter_logan/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Logan
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_logan:
+    :path: ".symlinks/plugins/flutter_logan/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_logan: e1334f8feb9cd7590e2b94425f2acc7ac6b0e8e3
+  Logan: c9205313f10ccdc544bf2b4abf716ca6a2e6dc1d
+
+PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
+
+COCOAPODS: 1.16.2
