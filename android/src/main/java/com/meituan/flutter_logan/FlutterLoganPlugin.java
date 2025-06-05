@@ -37,20 +37,21 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * FlutterLoganPlugin
  */
-public class FlutterLoganPlugin implements MethodCallHandler {
+public class FlutterLoganPlugin implements FlutterPlugin, MethodCallHandler {
 
+  private MethodChannel channel;
   private static Executor sExecutor;
   private static Executor sMainExecutor = new Executor() {
-    private Handler mMainHandler = new Handler();
+    private Handler mMainHandler = new Handler(Looper.getMainLooper());
 
     @Override
     public void execute(Runnable runnable) {
@@ -64,16 +65,16 @@ public class FlutterLoganPlugin implements MethodCallHandler {
   private Context mContext;
   private String mLoganFilePath;
 
-  /**
-   * Plugin registration.
-   */
-  public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_logan");
-    channel.setMethodCallHandler(new FlutterLoganPlugin(registrar.context()));
+  @Override
+  public void onAttachedToEngine(FlutterPluginBinding flutterPluginBinding) {
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_logan");
+    channel.setMethodCallHandler(this);
+    mContext = flutterPluginBinding.getApplicationContext();
   }
 
-  public FlutterLoganPlugin(Context context) {
-    mContext = context.getApplicationContext();
+  @Override
+  public void onDetachedFromEngine(FlutterPluginBinding binding) {
+    channel.setMethodCallHandler(null);
   }
 
   /**

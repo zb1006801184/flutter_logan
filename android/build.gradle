@@ -4,6 +4,8 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         google()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         jcenter()
     }
 
@@ -15,6 +17,8 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         jcenter()
     }
 }
@@ -22,7 +26,9 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.meituan.flutter_logan'
     compileSdkVersion 28
+    ndkVersion "26.3.11579264"
 
     defaultConfig {
         minSdkVersion 16
