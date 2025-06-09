@@ -102,7 +102,10 @@ class FlutterLogan {
   static Future<List<File>?> _getLogDirPath() async {
     try {
       // 获取应用文档目录
-      final documentsDirectory = await getUploadPath('2025-06-06');
+      var time = DateTime.now();
+      final date =
+          "${time.year.toString()}-${time.month.toString().padLeft(2, '0')}-${time.day.toString().padLeft(2, '0')}";
+      final documentsDirectory = await getUploadPath(date);
       if ((documentsDirectory?.length ?? 0) < 14) {
         return null;
       }
