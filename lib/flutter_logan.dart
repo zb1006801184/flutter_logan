@@ -33,7 +33,7 @@ class FlutterLogan {
   /// [aseKey] 加密key
   /// [aesIv] 加密iv
   /// [maxFileLen] 最大文件长度 1024 * 1024 * 10 = 10MB
-  /// [maxDate] 最大过期时间(天)
+  /// [maxDate] 最大过期时间(天) - 暂时不使用
   ///
   static Future<bool> init(String aseKey, String aesIv, int maxFileLen,
       {int maxDate = 7}) async {
@@ -43,9 +43,9 @@ class FlutterLogan {
       'maxFileLen': maxFileLen,
     });
 
-    if (Platform.isAndroid) {
-      deleteExpiredLogs(maxDate);
-    }
+    // if (Platform.isAndroid) {
+    //   deleteExpiredLogs(maxDate);
+    // }
     return result;
   }
 
